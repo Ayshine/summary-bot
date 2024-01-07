@@ -1,6 +1,8 @@
 from interactions import SlashContext, slash_command
 import interactions
 from summary import summarize
+import time
+
 
 bot = interactions.Client()
 
@@ -15,6 +17,8 @@ async def on_startup():
     description="This will create a summary of the thread."
 )
 async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) command called "summary".
+        start_time = time.time()
+
         try:
             # Defer the response
             await ctx.defer()
@@ -59,6 +63,11 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
             # await ctx.send(f'{ctx.author.mention} Summary created! \n summary here....')
             print(summary)
 
+            end_time = time.time()
+            execution_time = end_time - start_time
+
+            print(f"The code executed in {execution_time} seconds for {count} messages")
+            
         except Exception as e:
             print(f"An error occurred: {e}")
 
