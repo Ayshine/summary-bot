@@ -38,7 +38,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
                 message_content = message.content.replace("\n", "")
 
                 # Store the message, the author's name, and the creation time in the list
-                messages.append(f'{message.author} at {message_time}: {message_content}')
+                messages.append({message_content})
                 count += 1
 
 
