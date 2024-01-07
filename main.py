@@ -43,7 +43,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
                 message_content = message.content.replace("\n", "")
 
                 # Store the message, the author's name, and the creation time in the list
-                messages.append({message_content})
+                messages.append(message_content)
                 count += 1
 
 
@@ -51,7 +51,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
             messages.reverse()
 
             # Append the thread's title at the beginning of the list
-            messages.insert(0, f'Thread Title: {thread.name}')
+            messages.insert(0, f'Bu thread"i özetler misin?. Thread Title: {thread.name}')
 
             print(messages)
             # Send a notification to the user who issued the command
@@ -60,8 +60,8 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
             # Here you can call your summary function with the messages list
             summary = summarize(messages)
             del messages
-            # await ctx.send(f'{ctx.author.mention} Summary created! \n summary here....')
-            print(summary)
+            await ctx.send(f'{ctx.author.mention} Summary created! \n Summary HEREEEEE: {summary}')
+            print(f"Summary HEREEEEE: {summary}")
 
             end_time = time.time()
             execution_time = end_time - start_time
@@ -73,7 +73,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
 
 
 
-bot.start("discord_token")
+bot.start("bot token here")
 
 
 
