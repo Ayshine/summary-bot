@@ -1,5 +1,6 @@
 from interactions import SlashContext, slash_command
 import interactions
+from summary import summarize
 
 bot = interactions.Client()
 
@@ -53,14 +54,17 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
             await ctx.send(f'{ctx.author.mention} your summary is being created. There are {count} messages at total here. This may take a while.') # you can make it hidden=True to hide the message
 
             # Here you can call your summary function with the messages list
-            # summary(messages)
+            summary = summarize(messages)
+            del messages
             # await ctx.send(f'{ctx.author.mention} Summary created! \n summary here....')
+            print(summary)
 
         except Exception as e:
             print(f"An error occurred: {e}")
 
 
 
-bot.start("bot token here")
+bot.start("discord_token")
+
 
 
