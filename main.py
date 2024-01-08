@@ -37,7 +37,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
                     continue
 
                 # Get the message's creation time and format it as a string
-                message_time = message.created_at.strftime("%Y-%m-%d %H:%M:%S")
+                # message_time = message.created_at.strftime("%Y-%m-%d %H:%M:%S")
 
                 # Replace newline characters in the message content
                 message_content = message.content.replace("\n", "")
@@ -51,21 +51,26 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
             messages.reverse()
 
             # Append the thread's title at the beginning of the list
-            messages.insert(0, f'Bu thread"i özetler misin?. Thread Title: {thread.name}')
+            messages.insert(0, f"Bu thread'i özetler misin?. 'Thread Title: {thread.name}'")
 
             print(messages)
             # Send a notification to the user who issued the command
             await ctx.send(f'{ctx.author.mention} your summary is being created. There are {count} messages at total here. This may take a while.') # you can make it hidden=True to hide the message
 
-            # Here you can call your summary function with the messages list
+            # # Here you can call your summary function with the messages list
             summary = summarize(messages)
-            del messages
+
+            # Clear the messages list
+            messages.clear()
+
             await ctx.send(f'{ctx.author.mention} Summary created! \n Summary HEREEEEE: {summary}')
+
             print(f"Summary HEREEEEE: {summary}")
+
+
 
             end_time = time.time()
             execution_time = end_time - start_time
-
             print(f"The code executed in {execution_time} seconds for {count} messages")
             
         except Exception as e:
@@ -73,7 +78,7 @@ async def botSummary(ctx: SlashContext):  # Defines a new "context" (ctx) comman
 
 
 
-bot.start("bot token here")
+bot.start("MTE4MzU1NDY5MzM5ODUyODA1MQ.GO9rY5.3EqjAjGxQgEyYnIDSFpNoo7EeVLlSu1vkBB2rY")
 
 
 
